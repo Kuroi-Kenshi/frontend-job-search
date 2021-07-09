@@ -1,0 +1,37 @@
+.header
+    width: 100%
+    background-color: #fff
+
+.wrapper
+    max-width: 1160px
+    height: 74px
+    margin: auto
+    display: flex
+    align-items: center
+
+.navigation
+    display: flex
+    align-items: center
+    list-style: none
+    text-decoration: none
+    &__search,
+    &__favorites
+        font-weight: 700
+        font-size: 14px
+        margin-right: 91px
+        a
+            color: #6B8397
+            text-decoration: none
+            &:global(.active)
+                color: #0070FB
+
+.logo
+    a
+        font-weight: 900
+        font-size: 20px
+        margin-right: 130px
+        color: #000
+        text-decoration: none
+    span
+        text-transform: uppercase
+        color: #0070FB

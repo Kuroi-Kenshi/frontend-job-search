@@ -1,0 +1,67 @@
+@import '../../variables.sass'
+
+.wrapper
+    margin-top: 34px
+    border-radius: 10px
+    overflow: hidden
+
+.filter
+    display: flex
+    width: 100%
+    height: 60px
+    &__input
+        width: 60%
+        border: none
+        margin-left: 65px
+        color: $gray
+        font-weight: 700
+        &:focus
+            outline: none
+    &__button
+        background-color: transparent
+        border: none
+        font-weight: 700
+        color: $gray
+        cursor: pointer
+        margin-left: 60px
+        height: 100%
+    &__item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 100%
+        width: 100%
+        margin-right: 2px
+        background-color: #fff
+        &.location
+            background-image: url('./icons/location.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.schedule
+            background-image: url('./icons/schedule.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.employment
+            background-image: url('./icons/employment.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.experience
+            background-image: url('./icons/experience.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.salary
+            background-image: url('./icons/salary.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+            margin-right: 0
+        &.submit_btn
+            padding: 0
+            margin: 0
+            width: 89px
+            button
+                width: 100%
+                height: 100%
+                margin: 0
+                padding: 20px
+                color: #fff
+                background-color: $blue
