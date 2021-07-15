@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import VacanciesList from '@components/VacanciesList'
 import VacancyDescription from '@components/VacancyDescription'

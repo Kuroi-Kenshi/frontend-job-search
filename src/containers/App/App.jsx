@@ -14,38 +14,45 @@ function App() {
     const [loaderIsActive, setLoaderIsActive] = useState(false)
     const [notFound, setNotFound] = useState(false)
     const {location, schedule, employment, experience, salary} = useSelector(state => state.formDataReducer)
-
     const getVacanciesData = () => {
         (async () => {
             setLoaderIsActive(true)
             setDataVacancies([])
             try {
-                const vacanciesList = await getData(
-                    `https://api.hh.ru/vacancies?text=frontend%20${location}
-                        &experience=${experience}
-                        &schedule=${schedule}
-                        &employment=${employment}
-                        &salary=${salary}
-                        &only_with_salary=true&per_page=100`
-                )
+                const url = salary ?  `https://api.hh.ru/vacancies?text=frontend%20${location}
+                                        &experience=${experience}
+                                        &schedule=${schedule}
+                                        &employment=${employment}
+                                        &salary=${salary}
+                                        &only_with_salary=true
+                                        &per_page=100`
+                                        
+                                    : `https://api.hh.ru/vacancies?text=frontend%20${location}
+                                        &experience=${experience}
+                                        &schedule=${schedule}
+                                        &employment=${employment}
+                                        &per_page=100`
 
+                const vacanciesList = await getData(url)
                 if(vacanciesList.items.length === 0){
-                    console.log(vacanciesList);
-                    setNotFound(true)
-                    setLoaderIsActive(false)
-                } else {
-                    setNotFound(false)
-                    vacanciesList.items.forEach( async (el) => {
-                        const data = await getData(`https://api.hh.ru/vacancies/${el.id}`)
-                        setDataVacancies(prev => [...prev, data])
-                        setLoaderIsActive(false)
-                      })
-                }
+                  setNotFound(true)
+                  setLoaderIsActive(false)
+              } else {
+                  setNotFound(false)
+                  vacanciesList.items.forEach( async (el) => {
+                      const data = await getData(`https://api.hh.ru/vacancies/${el.id}`)
+                      if(!data) {
+                        return
+                      }
+                      setDataVacancies(prev => [...prev, data])
+                      setLoaderIsActive(false)
+                    })
+              }
 
             } catch (error) {
                 console.error(error);
             }
-            
+
         })()
     }
 

@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import VacancyCard from '@components/VacancyCard';
 import PropTypes from 'prop-types';
 

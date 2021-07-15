@@ -33,7 +33,7 @@ const VacancyDescription = ({description}) => {
   return (
     <section className={s.vacancyInfo} id='info'>
         <header className={s.header}>
-        {description?.employer.logo_urls ? <img src={description.employer.logo_urls[240]} alt='Company Logo' className={s.header__logo}/> : <NoLogo size={240} />}
+        {description?.employer?.logo_urls ? <img src={description.employer.logo_urls[240]} alt='Company Logo' className={s.header__logo}/> : <NoLogo size={240} />}
             <div className={s.vacancyInfo__title}>
                 <h2 className={s.vacancyInfo__positionName}>{description?.name}</h2>
                 <div className={s.vacancyInfo__company}>

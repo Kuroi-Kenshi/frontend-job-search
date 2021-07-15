@@ -82,7 +82,7 @@ const SearchBar = () => {
           <form action="" onClick={setRadioTitle}>
               <ul className={s.filter}>
                   <li className={`${s.filter__item} ${s.location}`}>
-                    <input type='text' name='location' placeholder='Город' value={formData.location} className={s.filter__input} onChange={addDataToFormData} />
+                    <input type='text' name='location' placeholder='Город' value={formData.location} className={s.filter__input} onChange={addDataToFormData} required/>
                   </li>
                   <li className={`${s.filter__item} ${s.schedule}`}>
                     <button type='button' className={s.filter__button} id='scheduleBtn' onClick={openCloseForm}>{scheduleForm.activeTitle}</button>
@@ -156,7 +156,7 @@ const SearchBar = () => {
                     </div>
                   </li>
                   <li className={`${s.filter__item} ${s.salary}`}>
-                    <input type='text' name='salary' placeholder='Уровень дохода' value={formData.salary} className={s.filter__input} onChange={addDataToFormData} />
+                    <input type='text' name='salary' placeholder='Уровень дохода' value={formData.salary} className={s.filter__input} onChange={addDataToFormData} required/>
                   </li>
                   <li className={`${s.filter__item} ${s.submit_btn}`}>
                     <button type='submit' className={s.filter__button} onClick={setFormDataState}>Поиск</button>
