@@ -32,17 +32,18 @@ const SearchBar = () => {
         // e.stopPropagation()
 
         if(e.target.name === 'schedule') {
-            const title = e.target.labels[0].outerText
+            console.log(e);
+            const title = e.target.labels[0].lastChild.textContent 
             setScheduleForm(prev => ({...prev, activeTitle: title}))
         }
 
         if ( e.target.name === 'employment') {
-            const title = e.target.labels[0].outerText
+            const title = e.target.labels[0].lastChild.textContent 
             setEmploymentForm(prev => ({...prev, activeTitle: title}))
         }
 
         if ( e.target.name === 'experience') {
-            const title = e.target.labels[0].outerText
+            const title = e.target.labels[0].lastChild.textContent 
             setExperienceForm(prev => ({...prev, activeTitle: title}))
         }
 
@@ -86,7 +87,6 @@ const SearchBar = () => {
                   </li>
                   <li className={`${s.filter__item} ${s.schedule}`}>
                     <button type='button' className={s.filter__button} id='scheduleBtn' onClick={openCloseForm}>{scheduleForm.activeTitle}</button>
-                    {/* ${scheduleForm.isOpen && s.active} */}
                     <div className={`${s.dropdownForm} `} >                        
                         <label className={s.radio} >
                             <input className={s.radio__input} type="radio" name="schedule" value='fullDay' checked={formData.schedule === 'fullDay'} onChange={addDataToFormData} />

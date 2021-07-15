@@ -83,7 +83,6 @@ const VacancyCard = ({ idx, id, logo, companyName, position, salary, description
                     </div>
                     <div className={s.vacancyCard__favoriteBtn}>
                             <img src={inFavorites ? Fillheart : NotFillheart} alt='Add To Favorites' onClick={dispatchVacancyFavorite}/>
-                            {/* <img src={favoritesData.find((el) => el.id)  ? Fillheart : NotFillheart} alt='Add To Favorites' onClick={dispatchVacancyFavorite}/> */}
                             <span>{getDate()}</span>
                     </div>			
             </div>
