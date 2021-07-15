@@ -1,5 +1,5 @@
 import SearchVacancy from '@containers/SearchVacancy';
-import FavoriteVacancies from '@containers/FavoriteVacancies';
+import FavoritePage from '@containers/FavoritePage';
 
 const routesConfig = [
   {
@@ -10,7 +10,7 @@ const routesConfig = [
   {
     path: '/favorites',
     exact: true,
-    component: FavoriteVacancies,
+    component: FavoritePage,
   },
 ];
 

@@ -1,6 +1,8 @@
+@import '../../styles/variables.sass'
+
 .header
     width: 100%
-    background-color: #fff
+    background-color: $white
 
 .wrapper
     max-width: 1160px
@@ -20,10 +22,10 @@
         font-size: 14px
         margin-right: 91px
         a
-            color: #6B8397
+            color: $HeaderLinkColor
             text-decoration: none
             &:global(.active)
-                color: #0070FB
+                color: $blue
 
 .logo
     a
@@ -34,4 +36,4 @@
         text-decoration: none
     span
         text-transform: uppercase
-        color: #0070FB
+        color: $blue

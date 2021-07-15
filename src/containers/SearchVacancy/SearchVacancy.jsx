@@ -1,47 +1,35 @@
-import {useState, useEffect} from 'react'
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import SearchBar from '@components/SearchBar'
 import VacanciesList from '@components/VacanciesList'
 import VacancyDescription from '@components/VacancyDescription'
-import { getData } from '@utils/network'
+import Loader from '@components/Loader'
 
 import s from './SearchVacancy.module.sass';
 
-const SearchVacancy = () => {
 
-  const [vacanciesData, setVacancesData] = useState([])
-    const city = 'Москва'
-
-    const getVacanciesData = () => {
-        (async () => {
-            const data = await getData(`https://api.hh.ru/vacancies?text=Junior%20frontend%20${city}&only_with_salary=true&per_page=100`)
-            data.items.forEach( async (el) => {
-                const data = await getData(`https://api.hh.ru/vacancies/${el.id}`)
-                setVacancesData(prev => [...prev, data])
-            })
-        })()
-    }
-
-    
-    useEffect(() => {
-        getVacanciesData()
-    }, [])
-
-// console.log(vacanciesData);
+const SearchVacancy = ({dataVacancies, loaderIsActive, notFound}) => {
+    const vacancyId = useSelector(state => state.activeVacancyReducer)
+    const dataVacancy = dataVacancies
+    const description = dataVacancy.find((el) => el.id === vacancyId.id)
 
   return (
       <>
           <SearchBar />
-          <section className={s.main}>
-            {vacanciesData.length && <VacanciesList dataVacancy={vacanciesData} />}
-            {vacanciesData.length && <VacancyDescription vacancyDescription={vacanciesData} />}
-          </section>
+
+          {dataVacancy.length === 0 && loaderIsActive ? <Loader />
+            :notFound ? <section className={s.main}>Ничего не найдено</section> 
+            :(
+                <section className={s.main}>
+                    <VacanciesList dataVacancies={dataVacancy} />
+                    <VacancyDescription description={description} />
+                </section>
+
+            ) 
+          }
+
+          
       </>
   );
 }
-
-// SearchVacancy.propTypes = {
-//   text: PropTypes.string
-// }
 
 export default SearchVacancy;

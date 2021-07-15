@@ -1,35 +1,58 @@
+import { useEffect } from 'react'
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
+import NoLogo from '@components/NoLogo'
+
 import s from './VacancyDescription.module.sass';
 
-import logo from './img/logo.jpg'
+const VacancyDescription = ({description}) => {
+    const currency = description?.salary?.currency === 'RUR' ? 'РУБ' 
+                        : description?.salary?.currency === 'USD' ? 'USD' 
+                        : 'EUR'
 
-const VacancyDescription = () => {
+    const getSalary = () => {
+        const salaryFrom = description?.salary?.from
+        const salaryTo = description?.salary?.to
+
+        if(salaryFrom && salaryTo) {
+            return `От ${salaryFrom} до ${salaryTo} ${currency}`
+        }
+        if(salaryFrom && !salaryTo) {
+            return `От ${salaryFrom} ${currency}`
+        }
+        if(!salaryFrom && salaryTo) {
+            return `До ${salaryTo} ${currency}`
+        }
+    }
+
+    useEffect(() => {
+        const component = document.querySelector('#info')
+        component.scrollTop = 0
+    }, [description])
+
   return (
-      <section className={s.vacancyInfo}>
+    <section className={s.vacancyInfo} id='info'>
         <header className={s.header}>
-            {/* <div className={s.container}> */}
-                <img src={logo} alt='Company Logo' />
-                <div className={s.vacancyInfo__title}>
-                    <h2 className={s.vacancyInfo__positionName}>Front-end Разработчик</h2>
-                    <div className={s.vacancyInfo__company}>
-                        <span className={s.vacancyInfo__companyName}>Интернет Люди</span>
-                        <span className={s.vacancyInfo__location}>Москва</span>
-                    </div>
+        {description?.employer.logo_urls ? <img src={description.employer.logo_urls[240]} alt='Company Logo' className={s.header__logo}/> : <NoLogo size={240} />}
+            <div className={s.vacancyInfo__title}>
+                <h2 className={s.vacancyInfo__positionName}>{description?.name}</h2>
+                <div className={s.vacancyInfo__company}>
+                    <span className={s.vacancyInfo__companyName}>{description?.employer.name}</span>
+                    {description?.address?.city ? <span className={s.vacancyInfo__location}>{description.address.city}</span> : ''}
                 </div>
-            {/* </div> */}
+            </div>
         </header>
-        <div className={s.vacancyInfo__salary}>От 150 000 до 300 000</div>
+        <div className={s.vacancyInfo__salary}>{getSalary()}</div>
         <hr className={s.horisontalLine}/>
         <div className={s.vacancyInfo__descr}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat accusamus illum doloremque necessitatibus consequatur quo repudiandae beatae deserunt reiciendis nisi est voluptatibus voluptates commodi aliquam culpa vel, maiores maxime consequuntur.</p>
+            {ReactHtmlParser(description?.description)}
         </div>
-        
-      </section>
+    </section>
   );
 }
 
-// VacancyDescription.propTypes = {
-//   text: PropTypes.string
-// }
+VacancyDescription.propTypes = {
+    description: PropTypes.object
+}
 
 export default VacancyDescription;

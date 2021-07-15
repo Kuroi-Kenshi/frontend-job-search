@@ -1,12 +1,27 @@
+@import '../../styles/variables.sass'
+
 .vacancyInfo
+    width: 100%
+    height: calc(100vh - 150px)
     position: relative
+    position: -webkit-sticky
+    position: sticky
+    top: 135px
+    margin-bottom: 15px
     padding: 25px
     border-radius: 10px
-    background-color: #fff
+    background-color: $white
+    overflow-y: scroll
+    margin-bottom: 15px
+    scrollbar-width: none
+    &::-webkit-scrollbar
+        width: 0
+
     .header
         display: flex
         align-items: center
-        img
+        &__logo
+            width: 130px
             margin-right: 50px
     &__positionName
         font-size: 20px
@@ -16,12 +31,12 @@
         font-weight: 700
         color: #9AAAB5
         padding-right: 11px
-        border-right: 1px solid #9AAAB5
     &__location
         font-size: 10px
         font-weight: 700
         color: #9AAAB5
         padding-left: 11px
+        border-left: 1px solid #9AAAB5
     &__salary
         margin-top: 27px
         margin-bottom: 37px
@@ -29,6 +44,11 @@
         font-weight: 700
     &__descr
         margin-top: 67px
+        p
+            margin-bottom: 30px
+        ul
+            margin-bottom: 30px
+            list-style-position: inside
 
 .horisontalLine
     width: 100%

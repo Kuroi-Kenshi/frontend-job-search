@@ -1,9 +1,18 @@
-@import '../../variables.sass'
+@import '../../styles/variables.sass'
 
 .wrapper
-    margin-top: 34px
-    border-radius: 10px
-    overflow: hidden
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: -webkit-sticky
+    position: sticky
+    top: -1px
+    background-color: $gray
+    height: 134px
+    z-index: 9999
+
+form
+    width: 100%
 
 .filter
     display: flex
@@ -13,7 +22,7 @@
         width: 60%
         border: none
         margin-left: 65px
-        color: $gray
+        color: $blue-gray
         font-weight: 700
         &:focus
             outline: none
@@ -21,7 +30,7 @@
         background-color: transparent
         border: none
         font-weight: 700
-        color: $gray
+        color: $blue-gray
         cursor: pointer
         margin-left: 60px
         height: 100%
@@ -32,23 +41,141 @@
         height: 100%
         width: 100%
         margin-right: 2px
-        background-color: #fff
+        background-color: $white
         &.location
             background-image: url('./icons/location.svg')
             background-repeat: no-repeat
             background-position: 25px 50%
+            border-radius: 10px 0 0 10px
         &.schedule
+            position: relative
             background-image: url('./icons/schedule.svg')
             background-repeat: no-repeat
             background-position: 25px 50%
+            &:hover
+                .dropdownForm
+                    display: flex
+            .dropdownForm
+                display: none
+                flex-direction: column
+                position: absolute
+                top: 60px
+                transition: 0.5s
+                padding: 18px 23px 18px 23px
+                width: 100%
+                background-color: $white
+                border-radius: 0 0 10px 10px
+                font-size: 12px
+                font-weight: 500
+                color: #49627E
+                z-index: 999
+                .radio
+                    margin-bottom: 15px
+                    padding-left: 28px
+                    cursor: pointer
+                    position: relative
+                    &__input
+                        -webkit-appearance: none
+                        -moz-appearance: none
+                        appearance: none
+                        &:checked + .radio__icon
+                            background-image: url('./icons/radio-on.svg')
+                        &:focus + .radio__icon
+                            background-image: url('./icons/radio-off-focused.svg')
+                        &:checked:focus + .radio__icon
+                            background-image: url('./icons/radio-on-focused.svg')
+                    &__icon
+                        position: absolute
+                        width: 22px
+                        height: 22px
+                        margin-left: -28px
+                        background-image: url('./icons/radio-off.svg')
+                        background-repeat: no-repeat
+
         &.employment
+            position: relative
             background-image: url('./icons/employment.svg')
             background-repeat: no-repeat
             background-position: 25px 50%
+            &:hover
+                .dropdownForm
+                    display: flex
+            .dropdownForm
+                display: none
+                padding: 18px 23px 18px 23px
+                width: 100%
+                background-color: $white
+                position: absolute
+                top: 60px
+                flex-direction: column
+                border-radius: 0 0 10px 10px
+                font-size: 12px
+                font-weight: 500
+                color: #49627E
+                z-index: 999
+                .radio
+                    margin-bottom: 15px
+                    padding-left: 28px
+                    cursor: pointer
+                    &__input
+                        -webkit-appearance: none
+                        -moz-appearance: none
+                        appearance: none
+                        &:checked + .radio__icon
+                            background-image: url('./icons/radio-on.svg')
+                        &:focus + .radio__icon
+                            background-image: url('./icons/radio-off-focused.svg')
+                        &:checked:focus + .radio__icon
+                            background-image: url('./icons/radio-on-focused.svg')
+                    &__icon
+                        position: absolute
+                        width: 20px
+                        height: 20px
+                        margin-left: -28px
+                        background-image: url('./icons/radio-off.svg')
+                        background-repeat: no-repeat
         &.experience
+            position: relative
             background-image: url('./icons/experience.svg')
             background-repeat: no-repeat
             background-position: 25px 50%
+            &:hover
+                .dropdownForm
+                    display: flex
+            .dropdownForm
+                display: none
+                padding: 18px 23px 18px 23px
+                width: 100%
+                background-color: $white
+                position: absolute
+                top: 60px
+                flex-direction: column
+                border-radius: 0 0 10px 10px
+                font-size: 12px
+                font-weight: 500
+                color: #49627E
+                z-index: 999
+                .radio
+                    margin-bottom: 15px
+                    padding-left: 28px
+                    cursor: pointer
+                    &__input
+                        -webkit-appearance: none
+                        -moz-appearance: none
+                        appearance: none
+                        &:checked + .radio__icon
+                            background-image: url('./icons/radio-on.svg')
+                        &:focus + .radio__icon
+                            background-image: url('./icons/radio-off-focused.svg')
+                        &:checked:focus + .radio__icon
+                            background-image: url('./icons/radio-on-focused.svg')
+                    &__icon
+                        position: absolute
+                        width: 20px
+                        height: 20px
+                        margin-left: -28px
+                        background-image: url('./icons/radio-off.svg')
+                        background-repeat: no-repeat
         &.salary
             background-image: url('./icons/salary.svg')
             background-repeat: no-repeat
@@ -58,6 +185,7 @@
             padding: 0
             margin: 0
             width: 89px
+            border-radius: 0 10px 10px 0
             button
                 width: 100%
                 height: 100%
@@ -65,3 +193,4 @@
                 padding: 20px
                 color: #fff
                 background-color: $blue
+                border-radius: 0 10px 10px 0

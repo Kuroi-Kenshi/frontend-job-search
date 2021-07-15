@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types';
 import s from './Header.module.sass';
 
 const Header = () => {
@@ -17,9 +16,5 @@ const Header = () => {
       </>
   );
 }
-
-// Header.propTypes = {
-//   text: PropTypes.string
-// }
 
 export default Header;
