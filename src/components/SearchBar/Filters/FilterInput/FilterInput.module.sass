@@ -1,0 +1,54 @@
+@import '../../../../styles/variables.sass'
+
+.filter
+    &__input
+        width: 60%
+        border: none
+        margin-left: 65px
+        color: $blue-gray
+        font-weight: 700
+        font-size: 12px
+        &:focus
+            outline: none
+    &__item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        flex: 1 1 0
+        height: 100%
+        width: 100%
+        margin-right: 2px
+        background-color: $white
+        &.location
+            background-image: url('./icons/location.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+            border-radius: 10px 0 0 10px
+            &.bottomBorderRadiusDisabled
+                border-radius: 10px 0 0 0
+        &.salary
+            background-image: url('./icons/salary.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+            margin-right: 0
+
+@media ( max-width: 1025px )
+    .filter
+        &__input
+            font-size: 12px
+        &__item
+            width: 0
+            &.salary
+                margin-right: 2px
+
+@media ( max-width: 700px )
+    .filter
+        &__input
+            font-size: 10px
+            margin-left: 35px
+        &__item
+            &.location
+                background-position: 10px 50%
+                background-size: 12%
+            &.salary
+                display: none

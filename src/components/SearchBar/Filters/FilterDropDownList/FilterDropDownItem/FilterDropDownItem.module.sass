@@ -1,0 +1,85 @@
+@import '../../../../../styles/variables.sass'
+
+.filter
+    &__button
+        background-color: transparent
+        border: none
+        font-weight: 700
+        color: $blue-gray
+        cursor: pointer
+        margin-left: 60px
+        height: 100%
+        font-size: 12px
+    &__item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        flex: 1 1 0
+        height: 100%
+        width: 100%
+        margin-right: 2px
+        background-color: $white
+        &:hover
+            .dropdownForm
+                display: flex
+        .dropdownForm
+            display: none
+            padding: 18px 23px 18px 23px
+            width: 100%
+            background-color: $white
+            position: absolute
+            top: 60px
+            flex-direction: column
+            border-radius: 0 0 10px 10px
+            font-size: 12px
+            font-weight: 500
+            color: #49627E
+            z-index: 999
+            .radio
+                margin-bottom: 15px
+                padding-left: 28px
+                cursor: pointer
+                &__input
+                    -webkit-appearance: none
+                    -moz-appearance: none
+                    appearance: none
+                    &:checked + .radio__icon
+                        background-image: url('../../icons/radio-on.svg')
+                    &:focus + .radio__icon
+                        background-image: url('../../icons/radio-off-focused.svg')
+                    &:checked:focus + .radio__icon
+                        background-image: url('../../icons/radio-on-focused.svg')
+                &__icon
+                    position: absolute
+                    width: 20px
+                    height: 20px
+                    margin-left: -28px
+                    background-image: url('../../icons/radio-off.svg')
+                    background-repeat: no-repeat
+        &.schedule
+            position: relative
+            background-image: url('./icons/schedule.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.employment
+            position: relative
+            background-image: url('./icons/employment.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+        &.experience
+            position: relative
+            background-image: url('./icons/experience.svg')
+            background-repeat: no-repeat
+            background-position: 25px 50%
+
+@media ( max-width: 1025px )
+    .filter
+        &__item
+            &.schedule
+                display: none
+            &.experience
+                display: none
+            &.employment
+                display: none
+        &__button
+            margin-left: 0

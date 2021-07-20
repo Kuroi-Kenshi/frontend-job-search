@@ -1,11 +1,27 @@
+@import './variables'
+
 *
   margin: 0
   padding: 0
   box-sizing: border-box
 
+// html
+//   // overflow-y: scroll
+
 body
+  overflow-y: scroll
   background-color: #e5e5e5
   font-family: Montserrat
+  scrollbar-width: thin
+  scrollbar-color: $blue $white
+  &::-webkit-scrollbar
+    width: 5px
+  &::-webkit-scrollbar-track
+    background: $white
+
+  &::-webkit-scrollbar-thumb
+    background-color: $blue
+    border-radius: 20px
 
 @font-face
   font-family: 'Montserrat'

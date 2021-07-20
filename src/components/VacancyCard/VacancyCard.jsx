@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveVacancy, setVacancyToFavorites, removeVacancyFromFavorites } from '@store/actions';
 import PropTypes from 'prop-types';
 import NoLogo from '@components/NoLogo'
+import { setActiveVacancy, setVacancyToFavorites, removeVacancyFromFavorites, closeDescription } from '@store/actions';
 
 import Fillheart from './icons/FillHeart.svg'
 import NotFillheart from './icons/NotFillHeart.svg'
-
 import s from './VacancyCard.module.sass';
-
 
 const VacancyCard = ({ idx, id, logo, companyName, position, salary, description, city, keySkills, datePublished }) => {
     const dispatch = useDispatch()
@@ -23,9 +21,8 @@ const VacancyCard = ({ idx, id, logo, companyName, position, salary, description
     }
 
     const setActive = () => {
-        dispatch(
-            setActiveVacancy({id})
-        )
+        dispatch(setActiveVacancy({ id }))
+        dispatch(closeDescription({ isOpen: true }))
     }
 
     const dispatchVacancyFavorite = (e) => {
@@ -36,19 +33,19 @@ const VacancyCard = ({ idx, id, logo, companyName, position, salary, description
         } else {
             dispatch(
                 setVacancyToFavorites({
-                    [id]:{
+                    [id]: {
                         id,
                         employer: {
                             name: companyName,
                             logo_urls: logo
-                        }, 
+                        },
                         address: {
                             city
                         },
-                        position, 
+                        name: position,
                         salary,
                         description,
-                        key_skills: keySkills, 
+                        key_skills: keySkills,
                         published_at: datePublished
                     }
                 })
@@ -61,46 +58,46 @@ const VacancyCard = ({ idx, id, logo, companyName, position, salary, description
         if (id in favoritesData) {
             setInFavorites(true)
         }
-        if(idx === 0) dispatch(setActiveVacancy({id}))
+        idx === 0 && dispatch(setActiveVacancy({ id }))
     }, [])
- 
-  return (
-            <div  className={`${s.vacancyCard} ${isActive === id ? s.activeVacancy : ''}`} onClick={setActive} key={id}>
-                
-                    <div className={s.vacancyCard__logo}>
-                            {logo ? <img src={logo[90]} alt='Logo' /> : <NoLogo size={90} />} 
 
+    return (
+        <div className={`${s.vacancyCard} ${isActive === id ? s.activeVacancy : ''}`} onClick={setActive} key={id}>
+            <div className={s.vacancyCard__container}>
+                <div className={s.vacancyCard__logo}>
+                    {logo ? <img src={logo[90]} alt='Logo' /> : <NoLogo size={90} />}
+                </div>
+                <div className={s.vacancyCard__info}>
+                    <div className={s.vacancyCard__title}>
+                        <div className={s.vacancyCard__companyName}>{companyName}</div>
+                        <div className={s.vacancyCard__position}>{position}</div>
+                        <div className={s.vacancyCard__location}>{city}</div>
+                        <ul className={s.vacancyCard__tags}>
+                            {keySkills && keySkills.map(({ name }) => <li key={name} className={s.vacancyCard__tagsItem}>{name}</li>)}
+                        </ul>
                     </div>
-                    <div className={s.vacancyCard__info}>
-                            <div className={s.vacancyCard__title}>
-                                    <div className={s.vacancyCard__companyName}>{companyName}</div>
-                                        <div className={s.vacancyCard__position}>{position}</div>
-                                    <div className={s.vacancyCard__location}>{city}</div>
-                                    <ul className={s.vacancyCard__tags}>
-                                        {keySkills && keySkills.map(({name}) => <li key={name} className={s.vacancyCard__tagsItem}>{name}</li>)}
-                                    </ul>
-                            </div>
-                    </div>
-                    <div className={s.vacancyCard__favoriteBtn}>
-                            <img src={inFavorites ? Fillheart : NotFillheart} alt='Add To Favorites' onClick={dispatchVacancyFavorite}/>
-                            <span>{getDate()}</span>
-                    </div>			
+                </div>
             </div>
-            
-  );
+            <div className={s.vacancyCard__favoriteBtn}>
+                <img src={inFavorites ? Fillheart : NotFillheart} alt='Add To Favorites' onClick={dispatchVacancyFavorite} />
+                <span>{getDate()}</span>
+            </div>
+        </div>
+
+    );
 }
 
 VacancyCard.propTypes = {
     idx: PropTypes.number,
     id: PropTypes.string,
-    logo: PropTypes.object,
     companyName: PropTypes.string,
     position: PropTypes.string,
-    salary: PropTypes.object,
     description: PropTypes.string,
     city: PropTypes.string,
-    keySkills: PropTypes.array,
     datePublished: PropTypes.string,
+    keySkills: PropTypes.array,
+    logo: PropTypes.object,
+    salary: PropTypes.object,
 }
 
 export default VacancyCard;

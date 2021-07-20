@@ -1,0 +1,24 @@
+.radio
+    margin-bottom: 15px
+    padding-left: 28px
+    cursor: pointer
+    font-weight: 500
+    font-size: 12px
+    color: #49627E
+    &__input
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+        &:checked + .radio__icon
+            background-image: url('../../icons/radio-on.svg')
+        &:focus + .radio__icon
+            background-image: url('../../icons/radio-off-focused.svg')
+        &:checked:focus + .radio__icon
+            background-image: url('../../icons/radio-on-focused.svg')
+    &__icon
+        position: absolute
+        width: 20px
+        height: 20px
+        margin-left: -28px
+        background-image: url('../../icons/radio-off.svg')
+        background-repeat: no-repeat

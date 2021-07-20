@@ -4,6 +4,7 @@ import {
   REMOVE_VACANCY_FROM_FAVORITES,
   ADD_FORM_DATA,
   CLEAR_DATA,
+  CLOSE_DESCRIPTION,
 } from '@store/constants/actionTypes';
 
 export const addFormData = (data) => ({
@@ -13,6 +14,11 @@ export const addFormData = (data) => ({
 
 export const clearFormData = () => ({
   type: CLEAR_DATA,
+});
+
+export const closeDescription = (data) => ({
+  type: CLOSE_DESCRIPTION,
+  payload: data,
 });
 
 export const setActiveVacancy = (vacancyId) => ({

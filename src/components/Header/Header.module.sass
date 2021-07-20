@@ -3,19 +3,20 @@
 .header
     width: 100%
     background-color: $white
-
 .wrapper
     max-width: 1160px
     height: 74px
     margin: auto
-    display: flex
-    align-items: center
-
+    line-height: 74px
 .navigation
     display: flex
     align-items: center
     list-style: none
     text-decoration: none
+    &__list
+        display: flex
+        list-style: none
+        text-decoration: none
     &__search,
     &__favorites
         font-weight: 700
@@ -26,8 +27,8 @@
             text-decoration: none
             &:global(.active)
                 color: $blue
-
 .logo
+    margin-right: 130
     a
         font-weight: 900
         font-size: 20px
@@ -37,3 +38,79 @@
     span
         text-transform: uppercase
         color: $blue
+
+@media ( max-width: 1025px )
+    .wrapper
+        max-width: 620px
+    .navigation
+        &__container
+            margin-left: auto
+        &__list
+            justify-content: space-between
+            margin-left: 0
+        &__search
+            margin-right: 84px
+        &__favorites
+            margin-right: 0
+        .logo
+            a
+                margin-right: 0
+
+@media ( max-width: 700px )
+    .wrapper
+        max-width: 300px
+    .navigation
+        justify-content: space-between
+        &__container
+            display: none
+            width: 100%
+            position: absolute
+            left: 0
+            top: 74px
+            margin-left: auto
+            z-index: 101
+            background-color: $white
+            &.burgerMenuActive
+                display: block
+        &__list
+            flex-direction: column
+            align-items: center
+        &__search
+            margin-right: 0
+        .burger
+            position: relative
+            cursor: pointer
+            width: 21px
+            height: 16px
+            display: flex
+            align-items: center
+            span
+                display: block
+                width: 100%
+                height: 2px
+                background-color: $blue-gray
+                border-radius: 1px
+                transition: 0.3s
+            &::before,
+            &::after
+                content: ''
+                background-color: $blue-gray
+                position: absolute
+                width: 100%
+                height: 2px
+                left: 0
+                border-radius: 1px
+                transition: 0.3s
+            &::before
+                top: 0
+            &::after
+                bottom: 0
+            &.active
+                &::before
+                    transform: rotate(45deg)
+                    top: 7px
+                &::after
+                    transform: rotate(-45deg)
+                    bottom: 7px
+                span
+                    transform: scale(0)

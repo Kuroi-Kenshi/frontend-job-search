@@ -3,10 +3,9 @@
 .vacancyInfo
     width: 100%
     height: calc(100vh - 150px)
-    position: relative
     position: -webkit-sticky
     position: sticky
-    top: 135px
+    top: 133px
     margin-bottom: 15px
     padding: 25px
     border-radius: 10px
@@ -16,7 +15,6 @@
     scrollbar-width: none
     &::-webkit-scrollbar
         width: 0
-
     .header
         display: flex
         align-items: center
@@ -29,14 +27,14 @@
     &__companyName
         font-size: 10px
         font-weight: 700
-        color: #9AAAB5
+        color: $light-blue-gray
         padding-right: 11px
     &__location
         font-size: 10px
         font-weight: 700
-        color: #9AAAB5
+        color: $light-blue-gray
         padding-left: 11px
-        border-left: 1px solid #9AAAB5
+        border-left: 1px solid $light-blue-gray
     &__salary
         margin-top: 27px
         margin-bottom: 37px
@@ -49,6 +47,11 @@
         ul
             margin-bottom: 30px
             list-style-position: inside
+    &__closeBtn
+        position: absolute
+        top: 30px
+        right: 30px
+        cursor: pointer
 
 .horisontalLine
     width: 100%
@@ -57,3 +60,31 @@
     border: none
     background-color: #F9F9F9
     left: 0
+
+@media ( max-width: 1025px )
+    .vacancyInfo
+        position: fixed
+        top: 2%
+        right: 3%
+        left: 3%
+        bottom: 2%
+        height: auto
+        width: auto
+        margin-bottom: 0
+        z-index: 10000
+        .header
+            padding-right: 40px
+@media ( max-width: 700px )
+    .vacancyInfo
+        .header
+            align-items: flex-start
+            flex-direction: column
+            &__logo
+                width: 100px
+                margin-right: 0
+                margin-bottom: 15px
+            &__positionName
+                margin-bottom: 11px
+                font-size: 15px
+            &__salary
+                font-size: 15px
