@@ -20,9 +20,9 @@ const Header = () => {
                                 <li className={s.navigation__favorites}><NavLink to='/favorites' exact onClick={openBurgerMenu}>Избранные вакансии</NavLink></li>
                             </ul>
                         </li>
-                        {/* <li className={`${s.burger} ${burgerIsOpen && s.active}`} onClick={openBurgerMenu}>
+                        <li className={`${s.burger} ${burgerIsOpen && s.active}`} onClick={openBurgerMenu}>
                             <span></span>
-                        </li> */}
+                        </li>
                     </ul>
                 </div>
             </header>
