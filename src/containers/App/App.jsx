@@ -21,22 +21,24 @@ function App() {
         setDataVacancies([])
 
         const url = getRequestUrl(formData)
-        getData(url).then(data => {
-            if (data.items.length === 0) {
-                setLoaderIsActive(false)
-                setNotFound(true)
-            } else {
-                data.items.forEach((el) => {
-                    const data = getData(`https://api.hh.ru/vacancies/${el.id}`)
-                    data.then(data => {
-                        if (data) {
-                            setDataVacancies(prev => [...prev, data])
-                        }
+        getData(url)
+            .then(data => {
+                if (data.found === 0) {
+                    setLoaderIsActive(false)
+                    setNotFound(true)
+                } else {
+                    data.items.forEach((el) => {
+                        const data = getData(`https://api.hh.ru/vacancies/${el.id}`)
+                        data.then(data => {
+                            if (data) {
+                                setDataVacancies(prev => [...prev, data])
+                            }
+                        })
                     })
-                })
-                setLoaderIsActive(false)
-            }
-        })
+                }
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoaderIsActive(false))
     }
 
     useEffect(() => {
