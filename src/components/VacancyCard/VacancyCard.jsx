@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import NoLogo from '@components/NoLogo'
@@ -100,4 +100,4 @@ VacancyCard.propTypes = {
     salary: PropTypes.object,
 }
 
-export default VacancyCard;
+export default memo(VacancyCard);

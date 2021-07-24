@@ -5,6 +5,8 @@ import {
   ADD_FORM_DATA,
   CLEAR_DATA,
   CLOSE_DESCRIPTION,
+  INFO_MESSAGES_STATUS,
+  SEARCH_BAR_VISIBILITY,
 } from '@store/constants/actionTypes';
 
 export const addFormData = (data) => ({
@@ -34,4 +36,14 @@ export const setVacancyToFavorites = (vacancyData) => ({
 export const removeVacancyFromFavorites = (id) => ({
   type: REMOVE_VACANCY_FROM_FAVORITES,
   payload: id,
+});
+
+export const setInfoMessagesStatus = (status) => ({
+  type: INFO_MESSAGES_STATUS,
+  payload: status,
+});
+
+export const setVisibilitySearchBar = (visibility) => ({
+  type: SEARCH_BAR_VISIBILITY,
+  payload: visibility,
 });

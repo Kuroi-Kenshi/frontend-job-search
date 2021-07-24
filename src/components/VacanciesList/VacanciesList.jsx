@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import s from './VacanciesList.module.sass';
 
-const VacanciesList = ({dataVacancies}) => {
+const VacanciesList = ({ dataVacancies }) => {
 
     return (
         <div className={s.wrapper}>
             <div className={s.vacanciesList}>
-                {dataVacancies.map(({id, name, address, employer, salary, description, key_skills, published_at}, idx) => {
-                    return <VacancyCard 
+                {dataVacancies.map(({ id, name, address, employer, salary, description, key_skills, published_at }, idx) => {
+                    return <VacancyCard
                         key={id}
                         idx={idx}
-                        id={id}            
+                        id={id}
                         logo={employer?.logo_urls}
                         companyName={employer?.name}
                         position={name}
@@ -32,4 +32,4 @@ VacanciesList.propTypes = {
     dataVacancies: PropTypes.array
 }
 
-export default VacanciesList;
+export default VacanciesList
